@@ -1,0 +1,8 @@
+
+{
+  "name": "Sentinel - Vehicle Identity Matching System",
+  "description": "A production-grade dashboard for detecting vehicle theft by verifying driver and vehicle identity between entry and exit points using computer vision and Gemini AI.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
