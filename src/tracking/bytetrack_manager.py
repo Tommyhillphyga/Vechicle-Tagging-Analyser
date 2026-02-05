@@ -2,7 +2,7 @@
 import logging
 from typing import Dict, List
 import supervision as sv
-from supervision ByteTrack
+from supervision import ByteTrack
 from .track_state import VehicleTrackState
 
 logger = logging.getLogger(__name__)
