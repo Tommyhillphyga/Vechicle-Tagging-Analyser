@@ -23,11 +23,11 @@ class VehicleCluster:
 
         if vehicle_embs:
             self.vehicle_embedding = np.mean(vehicle_embs, axis=0)
-            self.vehicle_embedding = self.vehicle_embedding / (np.linalg.norm(self.vehicle_embedding) + 1e-8)
+            self.vehicle_embedding = self.vehicle_embedding / (np.linalg.norm(self.vehicle_embedding))
 
         if driver_embs:
             self.driver_embedding = np.mean(driver_embs, axis=0)
-            self.driver_embedding = self.driver_embedding / (np.linalg.norm(self.driver_embedding) + 1e-8)
+            self.driver_embedding = self.driver_embedding / (np.linalg.norm(self.driver_embedding))
 
     @classmethod
     def from_snapshots(cls, cluster_id: str, snapshots: List[VehicleSnapshot], is_entry: bool):
