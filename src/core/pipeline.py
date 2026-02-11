@@ -24,19 +24,19 @@ class VehicleDriverPipeline:
         output_path: str = "./data/outputs",
         vehicle_model_path: str = "yolov8m.pt",
         face_model_path: str = None,
-        reid_opts: str = None,
-        reid_ckpt: str = None,
-        vehicle_similarity_threshold: float = 0.7,
-        driver_similarity_threshold: float = 0.6,
+        reid_opts: str = "./configs/opts.yaml",
+        reid_ckpt: str = "./models/reid_model/net_19.pth",
+        vehicle_similarity_threshold: float = 0.7, 
+        driver_similarity_threshold: float = 0.6, 
         overall_match_threshold: float = 0.5,
-        video_fps: int = 10,
+        video_fps: int = 20,
         verbose: bool = True
     ):
         self.entry_frames_path = entry_frames_path
         self.exit_frames_path = exit_frames_path
         self.output_path = output_path
         os.makedirs(self.output_path, exist_ok=True)
-        self.verbose = verbose
+        self.verbose = verbose 
 
         # detectors / trackers / embedders
         self.vehicle_detector = VehicleDetector(model_path=vehicle_model_path)
@@ -174,7 +174,7 @@ class VehicleDriverPipeline:
                         driver_crops=driver_crops,
                         vehicle_embedding=vehicle_emb,
                         driver_embedding=driver_emb,
-                        timestamp=time.time(),
+                        timestamp=time.time(), 
                         is_entry=is_entry
                     )
 

@@ -45,7 +45,7 @@ class DriverEmbedder:
             embs = []
             for f in face_crops:
                 try:
-                    resized = cv2.resize(f, (160,160))
+                    resized = cv2.resize(f, (128,128))
                     resized = resized.astype("float32")
                     resized = np.expand_dims(resized, 0)
                     emb = self.model.embeddings(resized)[0]
@@ -55,7 +55,7 @@ class DriverEmbedder:
             if not embs:
                 return np.zeros(512, dtype=np.float32)
             avg = np.mean(embs, axis=0)
-            return (avg / (np.linalg.norm(avg) + 1e-8)).astype(np.float32)
+            return (avg / (np.linalg.norm(avg))).astype(np.float32)
 
         if _HAS_FR:
             embs = []
@@ -75,7 +75,7 @@ class DriverEmbedder:
                 padded = np.zeros(512, dtype=np.float32)
                 padded[:128] = avg
                 avg = padded
-            return (avg / (np.linalg.norm(avg) + 1e-8)).astype(np.float32)
+            return (avg / (np.linalg.norm(avg))).astype(np.float32)
 
         # fallback: basic histogram
         hist = []
@@ -95,4 +95,4 @@ class DriverEmbedder:
             padded[:avg.size] = avg
             avg = padded
         avg = avg.astype(np.float32)
-        return (avg / (np.linalg.norm(avg) + 1e-8)).astype(np.float32)
+        return (avg / (np.linalg.norm(avg))).astype(np.float32)

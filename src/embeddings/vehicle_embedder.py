@@ -19,7 +19,7 @@ class VehicleEmbedder:
     compute a color histogram based descriptor (normalized) of size 512.
     """
 
-    def __init__(self, reid_opts=None, reid_ckpt=None, device='cpu'):
+    def __init__(self, reid_opts=None, reid_ckpt=None, device='cuda'):
         self.device = device
         self.model = None
         if _HAS_REID and reid_opts and reid_ckpt:
@@ -44,7 +44,7 @@ class VehicleEmbedder:
                 with torch.no_grad():
                     out = self.model(tensor).cpu().numpy()[0]
                 out = out.astype(np.float32)
-                return out / (np.linalg.norm(out) + 1e-8)
+                return out / (np.linalg.norm(out))
             except Exception:
                 logger.exception("ReID model failed; falling back to histogram")
 
